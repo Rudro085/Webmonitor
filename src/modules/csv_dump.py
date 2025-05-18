@@ -1,13 +1,13 @@
 import sqlite3
 import csv
 
-conn = sqlite3.Connection('main.db')
+conn = sqlite3.Connection('gov_websites.db')
 cur = conn.cursor()
 
-cur.execute("SELECT * FROM sites")
+cur.execute("SELECT * FROM websites")
 rows = cur.fetchall()
 
-with open('sites_dump.csv', 'w', newline='', encoding='utf-8') as csvfile:
+with open('weblist.csv', 'w', newline='', encoding='utf-8') as csvfile:
     csvwriter = csv.writer(csvfile)
     # Write header
     column_names = [description[0] for description in cur.description]

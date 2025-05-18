@@ -120,12 +120,14 @@ class Bot:
         return  int((OK + self.page_exists + self.dom_score/1500.)*100./3.0)
         
     def run(self,url):
-        url = 'https://'+ url
+        url = 'http://'+ url
         self.reset()
         self.status_code,self.response_time = self.check_uptime(url)
         self.description = http_status_codes[self.status_code]
         self.page_exists = self.check_body_tag(url)
         self.get_dom_structure(url)
+        if not self.dom_score == 0 :
+            self.page_exists = 1 
         self.overall_score = self.get_score()
         return [self.status_code,self.description,self.response_time,self.page_exists,self.dom_score,self.overall_score]
 
