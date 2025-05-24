@@ -1,12 +1,12 @@
 import sqlite3,csv
 
-conn = sqlite3.Connection('scrapped.db')
+conn = sqlite3.Connection('main.db')
 cur = conn.cursor()
 
-cur.execute("CREATE TABLE sites(Domain, Status_code, Description, SSL, Response_time,Page_exists, Tag_count, Score)")
+cur.execute("CREATE TABLE sites(Domain, Status_code, Description, SSL, Response_time, Browser_status, Page_exists, Tag_count, Score)")
 conn.commit()
 
-with open('weblist.csv', 'r') as csv_file:  
+with open('site_dump2.csv', 'r') as csv_file:  
     csv_reader = csv.DictReader(csv_file)
     for row in csv_reader:
         domain = row['Domains'] 
